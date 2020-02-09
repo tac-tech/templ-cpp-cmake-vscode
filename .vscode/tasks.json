@@ -1,0 +1,55 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "CMake",
+            "command": "cmake ..",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "make",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "build and run tests",
+            "command": "./all-tests",
+            "options": {
+                "cwd": "${workspaceRoot}/build/tests"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "CMake",
+                "make"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "build and run main",
+            "command": "./main",
+            "options": {
+                "cwd": "${workspaceRoot}/build/src"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "CMake",
+                "make"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "Clean",
+            "command": "rm * -r -f",
+            "options": {
+                "cwd": "${workspaceRoot}/build"
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
